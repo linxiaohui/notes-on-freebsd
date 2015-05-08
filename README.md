@@ -1,4 +1,7 @@
-My Awesome Book
-=======
+FreeBSD 笔记
+============
 
-This file file serves as your book's preface, a great place to describe your book's content and ideas.
+本书为FreeBSD学习笔记。
+列举了从安装步骤和注意事项，系统管理，应用程序等多方面的内容。
+
+版本：0.1 (Draft)
