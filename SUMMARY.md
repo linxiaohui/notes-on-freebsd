@@ -1,6 +1,9 @@
 # 目录
 
-* [安装配置](install.md)
+* [安装配置](baseinstall.md)
+   * [基本安装](baseinstall.md)
+   * [桌面环境](desktop.md)
+   * [系统配置](sysconfig.md)
 * [系统管理](sysadmin.md)
    * [硬件相关](hardware.md)
    * [用户管理](user.md)

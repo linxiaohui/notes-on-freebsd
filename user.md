@@ -73,30 +73,26 @@ vi /mnt/etc/ttys  更改`console none unknow off insecure`为**secure**
       * 重新启动到单用户模式后`/sbin/mount –a; passwd`
 
 
-  * chsh错了的解决办法
-系统启动时进入“单用户”模式，输入“boot -s”进入单用户的提示符：
-mount -u
-mount -a
-chsh -s /bin/csh
-进入单用户模式以后，
-把/etc/passwd和/etc/master.passwd里root的shell都改成/bin/csh，然后执行pwd_mkdb
+  * chsh错了的解决办法   
+系统启动时进入"单用户"模式:
+把/etc/passwd和/etc/master.passwd里root的shell都改成/bin/csh  
+然后执行pwd_mkdb
+```
 mount -u
 mount -a
 ee /etc/passwd
 ee /etc/master.passwd
 pwd_mkdb /etc/master.passwd
+```
+因为login的时候读取的是/etc/pwd.db和/etc/spwd.db  
+所以更改了/etc/passwd和/etc/master.passwd之后需要执行`pwd_mkdb`  
 
-因为login的时候读取的是/etc/pwd.db和/etc/spwd.db，
-所以更改了/etc/passwd和/etc/master.passwd之后还需要重新生成这两个文件。
-pwd_mkdb还会自动建立/etc/passwd
-
-vipw修改master.passwd时，vipw会先将master.passwd以预设的编辑器打开，
-修改保存后，它会自动更新db文件。
+vipw修改master.passwd时, vipw会先将master.passwd以预设的编辑器打开,
+修改保存后, 它会自动更新db文件.
 
   * 用户帐户锁定
     * 用vipw将其shell修改成/sbin/nologin
     * pw
       * pw lock userid
       * pw unlock userid （解锁）
-
 

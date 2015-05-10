@@ -68,6 +68,8 @@ allscreens_flags="MODE_280"
 vidcontrol green （把console改成黑底绿字的）
 vidcontrol -f ... （console下的字体大小）
 ```
+
+
 ## 分区与文件系统
    * 给文件添加或禁用系统禁删标志（目录不适用）
 ```
@@ -113,19 +115,20 @@ mdconfig -a -t vnode -f /mnt/swap0 -u o && swapon /dev/md0
      * `setfacl filename` 设置文件的acl信息
 
 ## 动态库路径
+系统动态库路径可以在**/etc/rc.conf**里加ldconfig_path="XXXX"在系统启动时设置。  
+根据`man ldconfig`也可以：
    * 在/etc/ld-elf.so.conf中增加动态库路径
    * sudo /etc/rc.d/ldconfig restart或/etc/rc.d/ldconfig forcerestart  
    * ldconfig -r  （查看库文件路径）
-   * 或在**/etc/rc.conf**里加ldconfig_path="XXXX"在系统启动时设置
 
 ## 记录使用者指令
-vim /etc/rc.conf
+**/etc/rc.conf**
 ```
 accounting_enable="YES"
 ```
-系统会将使用者的历程记录在/var/account/acct*中，最新的记录是acct
-lastcomm 会以/var/account/acct为参考，印出所记录的数据。
-也可以使用lastcomm -f acct1来查看前一天的资料。
+系统会将使用者的历程记录在/var/account/acct*中。
+`lastcomm`根据/var/account/acct输出所记录的数据。
+也可以使用lastcomm -f acct1来查看前一天的记录信息。
 
 ## Linux
 Linux /proc文件系统  
@@ -142,14 +145,6 @@ vim /etc/rc.conf
 ```
 linux_enable="yes"
 ```
-
-## sudo
-vim /usr/ports/security/sudo/Makefile
-将CONFIGURE_ARGS中的参数 --disable-log-wrap去掉 （执行sudo的log）
-cd /usr/ports/security/sudo
-make install clean
-安装完后首先执行/usr/local/sbin/visudo设定/usr/loca/etc/sudoers
-设定完后，使用者即可执行sudo <允许的指令>，使用者只要输入自己的密码即可，不必知道root密码，而且5分钟内再次执行sudo时不需再输入密码。如果打开log记录功能，sudo执行成功或失败的log   都将被记录到/var/log/sudo.log中。
 
 ## mtod
    * 登入后显示  
@@ -212,4 +207,6 @@ setenv GREP_OPTIONS --color=auto
    * ktrace
       * man ktrace
       * man truss
-      * /usr/ports/devel/strace可以用于32位系统，并且依赖/proc文件系统`mount -t procfs proc /proc`
+      * /usr/ports/devel/strace
+         * 用于32位系统
+         * 依赖/proc文件系统, `mount -t procfs proc /proc`

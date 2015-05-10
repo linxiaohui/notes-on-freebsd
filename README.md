@@ -4,4 +4,4 @@ FreeBSD 笔记
 本书为FreeBSD学习笔记。
 列举了从安装步骤和注意事项，系统管理，应用程序等多方面的内容。
 
-版本：0.1 (Draft)
+版本：0.2 (Draft Updates)

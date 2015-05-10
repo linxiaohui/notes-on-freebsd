@@ -17,7 +17,7 @@ cp GENERIC /root/kernels/MYKERNEL
 ln -s /root/kernels/MYKERNEL
 ```
      * dmesg |grep 'not found'		(看看GENERIC 内核是不是捕捉到了所有 硬件)
-     * dmesg |grep -i cpu			(K8为CPU架构)
+     * dmesg |grep -i cpu		(K8为CPU架构)
 ```
 CPU: Intel(R) Core(TM) i7 CPU	Q740	@ 1.73GHz (1728.97-MHz K8-class CPU)
 ```
@@ -34,29 +34,28 @@ cpu			HAMMER		# aka K8, aka Opteron & Athlon64
 ```
 #MYKERNEL
 # Basic Options
-cpu			HAMMER			(CPU 架构类型)
-ident			MYKERNEL		(命名)
+cpu			HAMMER		(CPU 架构类型)
+ident			MYKERNEL	(命名)
 makeoptions 	DEBUG=-g		# Build kernel with gdb debug symbols
-options 		SCHED_ULE		# ULE scheduler
+options 		SCHED_ULE	# ULE scheduler
 options		PREEMPTION 		# Enable kernel thread preemption
-
 options		 INET 			# InterNETworking
 ……
-...	...		...
+...	...	...
 # Device Drivers
 # Floppy drives
-# device fdc			(注释掉 没有的设备)
+# device fdc		(注释掉没有的设备)
 ```
 
    * 方法二：Include GENERIC 
 
 ```
 #MYKERNEL
-ident 	MYKERNEL			(命名)
+ident 	MYKERNEL		(命名)
 include	GENERIC			(包含 GENERIC)
 options	CPU_SOEKRIS		(添加 选项)
-nooption	MSDOSFS			(撤销 选项)
-nodevice	fdc					(撤销 设备)
+nooption	MSDOSFS		(撤销 选项)
+nodevice	fdc		(撤销 设备)
 ```
 
 关于options参考文件
@@ -83,20 +82,20 @@ nextboot -k testkernel
 ```
 mv /boot/kernel /boot/kernel.test
 mkdir /boot/kernel
-cp /boot/kernel.good/* /boot/kernel/			(将老版本Kernel 拉回来)
-nextboot -t kernel.test				(下次启动运行kernel.test,仅一次)
+cp /boot/kernel.good/* /boot/kernel/	(将老版本Kernel 拉回来)
+nextboot -t kernel.test			(下次启动运行kernel.test,仅一次)
 reboot
-mv /boot/kernel /boot/kernel.previous			(测试后保存 老版本 kernel)
-mv /boot/kernel.test /boot/kernel			(将kernel.test 改为默认 kernel)
+mv /boot/kernel /boot/kernel.previous	(测试后保存 老版本 kernel)
+mv /boot/kernel.test /boot/kernel	(将kernel.test 改为默认 kernel)
 ```
    * 方法三：Loader Prompt
 ```
-  ok unload						(erase the loaded kernel and all modules from memory)
+  ok unload			(erase the loaded kernel and all modules from memory)
   ok load /boot/kernel.test/kernel
   ok load /boot/kernel.test/acpi.ko
-  ok boot						  (使用 kernel.test 重新启动)
+  ok boot			(使用 kernel.test 重新启动)
 ```
-  
+
 
 ## 内核模块
 
@@ -203,4 +202,3 @@ sudo kldunload hello_fsm
 或者
 sudo make unload
 ```
-

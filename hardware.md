@@ -42,8 +42,8 @@ dmesg | grep "real memory" | awk -F '[( )]' '{print $2,$4,$7,$8}'
      * 查看硬盘信息
 ```
 diskinfo -vt /dev/ada0
-disklable /dev/ada0  
-disklable /dev/ada0s2
+disklabel /dev/ada0  
+disklabel /dev/ada0s2
 ```
      * 查看硬盘详细分区信息 & 读写状况  
 `gstat`
