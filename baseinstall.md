@@ -14,7 +14,7 @@ FreeBSD-10.1-RELEASE-amd64 @  Thinkpad X201i
      * 使用`bsdconfig` 配置系统网络等
      * 安装X、gnome3
 ```bash
-pkg install x-org
+pkg install xorg
 pkg install gnome3
 ```
      * 配置`loader.conf`
