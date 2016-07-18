@@ -1,5 +1,15 @@
 # 系统管理
 
+## 挂载ISO文件
+
+```
+mdconfig -a -t vnode -f PATH_TO_YOUR_ISO/ISOFILE.iso   # Create a loop-back device
+mount -t cd9660 /dev/mdX /cdrom  # Mount the created vnode to a folder
+umount /cdrom
+mdconfig -d -u X   # destroy the md-device
+```
+
+
 ## 查看网络流量
 ```
    systat -if 1 （1表示1s刷新屏幕一次）
@@ -35,7 +45,7 @@ echo "set nobeep" >> .cshrc
 ## 终端分辨率
 在内核配制文件里加入下面的编译内核
 ```
-     options      VESA 
+     options      VESA
      options      SC_PIXEL_MODE
 ```
 第一行选项让內核支持VESA 2，第二行让内核支持控制台图形模式。
@@ -146,6 +156,10 @@ vim /etc/rc.conf
 linux_enable="yes"
 ```
 
+echo 'linux_load="YES"' >> /boot/loader.conf
+
+
+
 ## mtod
    * 登入后显示  
    Message Of The Day(motd)   /etc/motd  
@@ -162,7 +176,7 @@ linux_enable="yes"
 ## 常用命令
    * 查看 sysctl 具体解释
 ```
-sysctl -d kern.maxvnodes 
+sysctl -d kern.maxvnodes
 kern.maxvnodes: Maximum number of vnodes
 ```
    * sync  
@@ -172,7 +186,7 @@ kern.maxvnodes: Maximum number of vnodes
      * 启动到sing user模式
      * fsck
      * reboot
-   * du -h -I /etc 
+   * du -h -I /etc
      * -I 参数来省略指定目录下的子目录  
      * -h 表示使用GB、MB等易读的格式
    * 锁住控制台
@@ -184,11 +198,11 @@ lock -v 锁住console（不注销）
 在/etc/csh.cshrc中加入如下配置
 ```
 setenv GREP_OPTIONS --color=auto
-``` 
+```
    * shutdown
      * shutdown now 切换到单用户模式
        * 切换或启动到单用户模式后，ctrl+d进入多用户模式
-     * shutdown -p now 
+     * shutdown -p now
      * shutdown -hp now 关闭电源
      * shutdown -r now reboot 重新启动机器
      * shutdown -p +90 (90分钟后关机)

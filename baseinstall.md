@@ -41,6 +41,7 @@ sh /etc/rc
 
 ## 本地化
    * 方法一：Class Definitions
+     * 影响 Login Shell
      * 修改/etc/login.conf
 ```
 chinese:Chinese Users Account:\
@@ -49,10 +50,10 @@ chinese:Chinese Users Account:\
 	:tc=default:
 ```
      * 执行
-```bash
-cap_mkdb /etc/login.conf  (rebuilds the database file /etc/login.conf.db)
-pw usermod linxh -L chinese	(修改用户语言环境)  或者
-pw useradd linxh -L chinese		(添加用户并使用中文)
+```
+cap_mkdb /etc/login.conf     # rebuilds the database file /etc/login.conf.db
+pw usermod linxh -L chinese	 # 修改用户语言环境
+pw useradd linxh -L chinese	 # 添加用户并使用中文
 ```
      * 执行`pw usershow linxh`检查输出
 ```
@@ -70,16 +71,27 @@ LC_MESSAGES="zh_CN.UTF-8"
 LC_ALL=
 ```
 
+
+   * 环境变量`LANG=xx_YY.ZZZZ`
+      * sets the system locale to language code xx
+      * country code YY
+      * character encoding ZZZZ
+      * `locale -a | grep UTF-8` : a list of every available UTF-8 locale
+
+   * /etc/profile
+      * non login shell
+      * GDM and other login managers
+
    * 方法二：User Definitions
      * 修改~/.login_conf
 ```
 me:\
 	:lang=zh_CN.UTF-8:\
 	:setenv=LC_CTYPE=zh_CN.UTF-8:\		
-	:setenv=LC_COLLATE=zh_CN.UTF-8:\	
+	:setenv=LC_COLLATE=zh_CN.UTF-8:\
 	:setenv=LC_TIME=zh_CN.UTF-8:\		
-	:setenv=LC_NUMERIC=zh_CN.UTF-8:\	
-	:setenv=LC_MONETARY=zh_CN.UTF-8:\	
+	:setenv=LC_NUMERIC=zh_CN.UTF-8:\
+	:setenv=LC_MONETARY=zh_CN.UTF-8:\
 	:setenv=LC_MESSAGES=zh_CN.UTF-8:\
 	:setenv=LC_ALL=zh_CN.UTF-8:\
 	:charset=UTF-8:

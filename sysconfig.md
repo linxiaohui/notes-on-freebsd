@@ -4,7 +4,7 @@
 ## 无线网络配置
 无线网卡一般为PCI设备，可以使用命令`pciconf –lv`查看网卡信息
 
-   1. /etc/wpa_supplicant.conf 
+   1. /etc/wpa_supplicant.conf
 ```
 network={
         ssid="MyWifi"
@@ -44,7 +44,7 @@ ifconfig wlan0 scan  查看无线网络（SSID等）
 ifconfig wlan0 up scan  
 ifconfig wlan0 list scan
 dhclient wlan0
-man wpa_supplicant.conf 
+man wpa_supplicant.conf
 ifconfig wlan0
 ```
 
@@ -93,14 +93,14 @@ umount -f /dev/ad0s7
 DRI(Direct Rendering Infrastructure)是实现3D功能最重要的部分。
    * 测试显卡是否能实现3D功能：
     `dmesg | grep agp`  如果出现:
-   agp0: <VIA 82C691 (Apollo Pro) host to PCI bridge> mem 
+   agp0: <VIA 82C691 (Apollo Pro) host to PCI bridge> mem
    0xe0000000-0xe3ffffff at device 0.0 on pci0 的字样，那么该显卡就有可能实现3D功能。
    * `kldload drm`
    如果没报错该显卡基本上就可以实现3D功能了。
    * `glxinfo`
    如果出现"Direct Rendering: YES"字样说明已经启用3D加速了。
    more /var/log/Xorg.0.log | grep "direct rendering"
- (II) I810(0): direct rendering: Enabled 
+ (II) I810(0): direct rendering: Enabled
 
 ## pkg
 FreeBSD 10.1使用`pkg`替代了`pkg_add`等命令。   
@@ -157,7 +157,7 @@ portsnap服务器：
 使用portsnap更新ports：
    * portsnap fetch
    * portsnap update
-   * 备注 
+   * 备注
       * 可以合起来使用`portsnap fetch update`
 
 ### make.conf
@@ -175,7 +175,7 @@ portsnap服务器：
     http://mirrors.tuna.tsinghua.edu.cn/freebsd/distfiles/${DIST_SUBDIR}/\
 ftp://ftp.hk.freebsd.org/pub/FreeBSD/distfiles/${DIST_SUBDIR}/\
 ftp://ftp.tw.freebsd.org/pub/FreeBSD/distfiles/${DIST_SUBDIR}/\
-ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/${DIST_SUBDIR}/	
+ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/${DIST_SUBDIR}/
 MASTER_SITE_OVERRIDE?=${MASTER_SITE_BACKUP}
 CPUTYPE?=core2		(根据情况调整，起到优化作用)
 INSTALL=install -C	(比对已安装文件与最新文件 版本号，低于新版本才安装)
@@ -186,19 +186,19 @@ INSTALL=install -C	(比对已安装文件与最新文件 版本号，低于新�
 ```
 
 ### 常用命令
-   * make fetch 
-     只抓取tarball 
+   * make fetch
+     只抓取tarball
    * make fetch-recursive
      抓取安装ports所有须要的其他ports的tarball
    * make fetch-list
      列出port所需的文件
-   * make clean 
+   * make clean
      Ports里面make clean,会附带着make clean依赖的软件的
    * make -DBATCH install
      不需要用户输入任何东西
    * make -DINTERACTIVE install
      继续上一步
-   * make configure 
+   * make configure
    * make distclean
      删除不想要的distfiles
    * make distclean
@@ -237,3 +237,8 @@ menuentry "FreeBSD(on /dev/sda2)" {
    * 把FreeBSD光盘上的boot\boot1复制到c:\
    * 编辑c:\boot.ini 加一行c:\boot1="FreeBsd"
 
+
+## 安装VMWare Tools
+ * 安装`compat6x-amd64`
+ * 在VMWare中选择安装VMWare Tools后, FreeBSD中需要`mount -t cd9660 /dev/cd0 /dist`后, 从`/dist`中复制VMWare安装包
+ * 注意Perl的路径

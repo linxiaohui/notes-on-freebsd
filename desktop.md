@@ -24,7 +24,7 @@ exec gnome-session
    * 重启`reboot`
    * 配置X
      * `Xorg -configure` 将在当前目录中生成名为xorg.conf.new的配置文件
-     * `Xorg -config xorg.conf.new` 测试生成的文件, 若成功则显示一个黑色的界面 
+     * `Xorg -config xorg.conf.new` 测试生成的文件, 若成功则显示一个黑色的界面
      * `Xorg -config xorg.conf.new -retro` 显示为中间有个X的灰色界面上步的配置成功
      * `Ctrl+Alt+F1`将返回原配置终端, `Ctrl+C`停止
      * `cp xorg.conf.new /etc/X11/xorg.conf`
@@ -60,7 +60,7 @@ make install clean
    2. 添加Times Roman,Helvetica,Palatino等Type1字体
 ```
 cd /usr/ports/x11-fonts/urwfonts  
-make install clean 
+make install clean
 ```
    3. 安装微软雅黑、宋体等TrueType字体   
 将要安装的TrueType 字体复制到/usr/local/lib/X11/fonts/TrueType，执行
@@ -71,7 +71,7 @@ xlsfonts (显示系统中安装的字体)
 ```
    4. 编辑/etc/X11/xorg.conf
 ```
-FontPath "/usr/local/lib/X11/fonts/wqy" 
+FontPath "/usr/local/lib/X11/fonts/wqy"
 FontPath "/usr/local/lib/X11/fonts/URW/"  
 FontPath "/usr/local/lib/X11/fonts/TrueType"  
 ```
@@ -81,12 +81,12 @@ FontPath "/usr/local/lib/X11/fonts/TrueType"
    6. 配置文件
      * .cshrc
 ```
-setenv XIM ibus 
-setenv GTK_IM_MODULE ibus 
-setenv QT_IM_MODULE xim 
-setenv XMODIFIERS @im=ibus 
-setenv XIM_PROGRAM ibus-daemon 
-setenv XIM_ARGS "--daemonize --xim" 
+setenv XIM ibus
+setenv GTK_IM_MODULE ibus
+setenv QT_IM_MODULE xim
+setenv XMODIFIERS @im=ibus
+setenv XIM_PROGRAM ibus-daemon
+setenv XIM_ARGS "--daemonize --xim"
 ```
      * .xinitrc
 ```
@@ -99,17 +99,29 @@ XIM_PROGRAM="ibus-daemon"
 XIM_ARGS="-d -x"
 ```
    7. 备注 :
-     * `Load "freetype"`后 gconf-editor才能显示 界面 
+     * `Load "freetype"`后 gconf-editor才能显示 界面
      * 可以用`ibus-daemon -x -d -r`测试ibus是否能够启动
 
 ## 声音
 安装后遇到系统没有声音，但是插入耳机有声音的情况
+
    * /boot/loader.conf
 ```
 snd_hda_load="YES"
 boot_verbose="-v"  （或者：重启看到启动菜单时按空格暂停，选择 verbose 模式回车）
-cat /dev/sndstat 
+cat /dev/sndstat
 ```
+**说明** : 有资料  echo 'snd_driver_load="YES"' >> /boot/loader.conf
+```
+The hw.snd.default_unit sysctl variable controls the default audio output
+Enabling the hw.snd.default_auto boolean will automatically assign hw.snd.default_unit to newly-attached devices.
+/etc/sysctl.conf
+# S/PDIF out on my MSI board
+hw.snd.default_unit=6
+# Don't automatically use new sound devices
+hw.snd.default_auto=0
+```
+
    * 重启
    * 执行 dmesg | grep hda > hda.log 得到默认的硬件配置状况
 ```
@@ -139,7 +151,7 @@ kldload snd_driver      (加载所有声卡驱动自动匹配)
 cat filenam > /dev/dsp  (测试声卡，filenam为任意文件产生噪音说明正常工作)
 ```
 
-## 安装flashplayer插件 
+## 安装flashplayer插件
    * 安装 nspluginwrapper
 ```bash
 cd /usr/ports/www/nspluginwrapper    
