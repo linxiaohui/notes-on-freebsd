@@ -10,5 +10,6 @@
    * [系统管理](sysadmin.md)
 * [常用工具](tools.md)
 * [内核相关](kernel.md)
+   * [FreeBSD内核浅析](kernel-link.md)
 * [问题解决](troubleshoot.md)
 * [参考资料](reference.md)
