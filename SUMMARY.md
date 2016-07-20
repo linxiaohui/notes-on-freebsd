@@ -4,6 +4,7 @@
    * [基本安装](baseinstall.md)
    * [桌面环境](desktop.md)
    * [系统配置](sysconfig.md)
+   * [常用配置文件](config-file.md)
    * [常见问题](install-trouble.md)
 * [系统管理](sysadmin.md)
    * [硬件相关](hardware.md)

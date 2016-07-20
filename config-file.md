@@ -1,6 +1,9 @@
 # 常用配置文件
 
 ## /etc/sysctl.conf
+
+[一个示例文件](./sysctl.conf.txt)
+
 ```
 # Enhance shared memory X11 interface
 kern.ipc.shmmax=67108864
